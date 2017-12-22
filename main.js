@@ -6,7 +6,7 @@ if(getPrestigePower().gte(player.prestigePower.times(autoprest))) reset(1);
 },50)
 var autogenerator = setInterval(maxAll,50)
 var d1 = document.getElementById('generatorsTab');
-d1.insertAdjacentHTML('beforeend', '<form action="/action_page.php"> Auto-Generator: <input type="checkbox" id="genautoselect"><br>Auto-Prestige: <input type="text" id="prestautoamnt"><br><input type="submit" value="Submit"></form>');
+d1.insertAdjacentHTML('beforeend', '<form action="/action_page.php"> Auto-Generator: <input type="checkbox" id="genautoselect"><br>Auto-Prestige: <input type="text" id="prestautoamnt"></form>');
 }
 setInterval(function(){
   autogen = document.getElementById("genautoselect").checked;
