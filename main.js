@@ -7,8 +7,9 @@ var autoprestige = setInterval(function(){
 if(getPrestigePower().gte(player.prestigePower.times(autoprest))) reset(1);
 },50)
 var autogenerator = setInterval(maxAll,50)
+setInterval(Loop,50)
 }
-setInterval(function(){
+function Loop(){
   autogen = document.getElementById("genautoselect").checked;
   autoprest = document.getElementById("prestautoamnt").value;
 if(autogen)
@@ -26,4 +27,4 @@ autoprestige = setInterval(function(){
 if(getPrestigePower().gte(player.prestigePower.times(autoprest))) reset(1);
 },50)
 )
-},50)
+}
