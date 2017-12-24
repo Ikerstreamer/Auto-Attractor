@@ -1,7 +1,7 @@
 var autogen = true;
 var autoprest = 2;
 var Tab= document.getElementById('generatorsTab');
-Tab.insertAdjacentHTML('beforeend', '<form action="/action_page.php"> Auto-Generator: <input type="checkbox" id="genautoselect"><br>Auto-Prestige: <input type="text" id="prestautoamnt" defaultValue="0"></form><Button onclick="UpdateAA()">Start</Button><br><span>Auto Attractor V0.3<br>by IkerStream</span>')
+Tab.insertAdjacentHTML('beforeend', '<form action="/action_page.php"> Auto-Generator: <input type="checkbox" id="genautoselect"><br>Auto-Prestige: <input type="text" id="prestautoamnt" defaultValue="0"></form><Button onclick="UpdateAA()">Start</Button><br><span>Auto Attractor V0.4<br>by IkerStream</span>')
 
 function UpdateAA(){
         setInterval(Loop,50);
