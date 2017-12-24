@@ -13,7 +13,7 @@ function StartAutoAttractor() {
 
 function Loop() {
     autogen = document.getElementById("genautoselect").checked;
-    autoprest = document.getElementById("prestautoamnt").value;
+    if(parseInt(document.getElementById("prestautoamnt").value)!="NaN")autoprest = parseInt(document.getElementById("prestautoamnt").value);
     if (autogen) {
         autogenerator = setInterval(maxAll, 50)
     } else {
