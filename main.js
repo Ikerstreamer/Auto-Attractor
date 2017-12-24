@@ -9,7 +9,7 @@ function UpdateAA(){
     if(!isNaN(document.getElementById("prestautoamnt").value))autoprest = parseFloat(document.getElementById("prestautoamnt").value);
 }
 
-function Autoprestige(){
+function AutoPrestige(){
         if (getPrestigePower().gte(player.prestigePower.times(autoprest))) reset(1);
 }
 
