@@ -1,9 +1,9 @@
 var autogen = true;
 var autoprest = 2;
 var Tab= document.getElementById('generatorsTab');
-Tab.insertAdjacentHTML('beforeend', '<form action="/action_page.php"> Auto-Generator: <input type="checkbox" id="genautoselect"><br>Auto-Prestige: <input type="text" id="prestautoamnt" defaultValue="0"></form><Button onclick="StartAutoAttractor()">Start</Button><br><span>Auto Attarctor V0.2<br>by IkerStream</span>')
+Tab.insertAdjacentHTML('beforeend', '<form action="/action_page.php"> Auto-Generator: <input type="checkbox" id="genautoselect"><br>Auto-Prestige: <input type="text" id="prestautoamnt" defaultValue="0"></form><Button onclick="UpdateAA()">Start</Button><br><span>Auto Attarctor V0.2<br>by IkerStream</span>')
 
-function Update(){
+function UpdateAA(){
         setInterval(Loop,50);
         autogen = document.getElementById("genautoselect").checked;
     if(parseDouble(document.getElementById("prestautoamnt").value)!="NaN")autoprest = parseDouble(document.getElementById("prestautoamnt").value);
