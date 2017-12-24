@@ -14,7 +14,7 @@ function Autoprestige(){
 }
 
 function AutoGenerator(){
-for(i=10;i>0;i++) buyGenerator(i,100);
+for(i=10;i>0;i--) buyGenerator(i,100);
 }
 
 function Loop() {
