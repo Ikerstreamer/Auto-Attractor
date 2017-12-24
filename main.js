@@ -6,7 +6,7 @@ Tab.insertAdjacentHTML('beforeend', '<form action="/action_page.php"> Auto-Gener
 function UpdateAA(){
         setInterval(Loop,50);
         autogen = document.getElementById("genautoselect").checked;
-    if(parseDouble(document.getElementById("prestautoamnt").value)!="NaN")autoprest = parseDouble(document.getElementById("prestautoamnt").value);
+    if(parseFloat(document.getElementById("prestautoamnt").value)!="NaN")autoprest = parseFloat(document.getElementById("prestautoamnt").value);
 }
 
 function Autoprestige(){
