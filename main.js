@@ -14,9 +14,9 @@ function UpdateAA() {
 function AutoPrestige() {
     if (getPrestigePower().gte(player.prestigePower.times(autoprest))) reset(1);
     else {
-        num = math.pow(autotrans, 3)
-        if (player.prestigeUpgrades.includes(13) && getPrestigePower().gte(num * 500)) reset(1);
-        else if (getPrestigePower().gte(num * 1000)) reset(1);
+        num = Math.pow(autotrans, 3)
+        if (player.prestigeUpgrades.includes(13) && getPrestigePower().gt(num * 500)) reset(1);
+        else if (getPrestigePower().gt(num * 1000)) reset(1);
     }
 }
 
