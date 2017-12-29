@@ -52,6 +52,15 @@ if(getPrestigePower().gt(player.prestigePower))
     }
     prestPerSec = x;
 }
+     num = Math.pow(autotrans, 3)
+        if (player.prestigeUpgrades.includes(13) && getPrestigePower().gt(num * 500)){
+            reset(1);
+            prestTime = 0;
+        }
+        else if (getPrestigePower().gt(num * 1000)) {
+            reset(1);
+            prestTime = 0;   
+        }
 }
 
 function AutoGenerator() {
