@@ -41,7 +41,7 @@ function AutoPrestige() {
 
 function DynamicAutoPrestige()
 {
-if(getPrestigePower().gt(player.prestigePower))
+if(getPrestigePower().gt(player.prestigePower) && prestTime%1 == 0)
 {
     x = getPrestigePower().divide(prestTime);
     if(x<prestPerSec)
@@ -49,8 +49,10 @@ if(getPrestigePower().gt(player.prestigePower))
         reset(1);
         prestTime = 0;
         prestPerSec;
-    }
+    }else
+    {
     prestPerSec = x;
+    }
 }
      num = Math.pow(autotrans, 3)
         if (player.prestigeUpgrades.includes(13) && getPrestigePower().gt(num * 500)){
@@ -77,5 +79,5 @@ function Loop() {
     if (autotrans >= 1) AutoTransfer();
     if (autogen) AutoGenerator();
     prestTime+=0.05;
-    document.getElementById("PP/sec").innerHTML = prestPerSec + "PP/s"
+    document.getElementById("PP/sec").innerHTML = Math.round(prestPerSec) + "PP/s";
 }
