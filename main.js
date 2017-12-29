@@ -15,7 +15,7 @@ function UpdateAA() {
     {
         reset(1);
         prestTime = 0;
-        prestPerSec;
+        prestPerMs = 0;
     }
     if (!isNaN(document.getElementById("prestautoamnt").value)) autoprest = parseFloat(document.getElementById("prestautoamnt").value);
     if (!isNaN(document.getElementById("transautoamnt").value)) autotrans = parseInt(document.getElementById("transautoamnt").value);
