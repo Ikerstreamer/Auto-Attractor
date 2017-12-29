@@ -5,7 +5,7 @@ var autotrans = 0;
 var prestPerMs = 0;
 var dprest = false;
 var Tab = document.getElementById('generatorsTab');
-Tab.insertAdjacentHTML('beforeend', '<form> Auto-Generator: <input type="checkbox" id="genautoselect"><br>Auto-Prestige: <input type="text" id="prestautoamnt" defaultValue="0"><br>Dynamic-Prestige: <input type="checkbox" id="dynamicprestselect"><b id="PP/sec"></b><br>Auto-Transfer: <input type="text" id="transautoamnt" defaultValue="0"></form><Button onclick="UpdateAA()">Start</Button><br><form>Console: <input type="text" id="cInput"></form><br><b id="console"></b><br><span>Auto Attractor V0.6<br>by IkerStream</span>')
+Tab.insertAdjacentHTML('beforeend', '<form> Auto-Generator: <input type="checkbox" id="genautoselect"><br>Auto-Prestige: <input type="text" id="prestautoamnt" defaultValue="0"><br>Dynamic-Prestige: <input type="checkbox" id="dynamicprestselect"><b id="PP/sec"></b><br>Auto-Transfer: <input type="text" id="transautoamnt" defaultValue="0"></form><Button onclick="UpdateAA()">Start</Button><br><form>Console: <input type="text" id="cInput"></form><br><b id="console"></b><br><span>Auto Attractor V0.7<br>by IkerStream</span>')
 
 function UpdateAA() {
     setInterval(Loop, 50);
