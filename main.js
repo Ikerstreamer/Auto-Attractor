@@ -11,7 +11,7 @@ function UpdateAA() {
     setInterval(Loop, 50);
     autogen = document.getElementById("genautoselect").checked;
     dprest = document.getElementById("dynamicprestselect").checked;
-    if(dprest)
+    if(dprest && getPestigePower().gt(player.PrestigePower))
     {
         reset(1);
         prestTime = 0;
