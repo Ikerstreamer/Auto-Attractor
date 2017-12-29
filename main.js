@@ -12,7 +12,7 @@ function UpdateAA() {
     setInterval(Loop, 50);
     autogen = document.getElementById("genautoselect").checked;
     dprest = document.getElementById("dynamicprestselect").checked;
-    if(dprest && getPestigePower().gt(player.PrestigePower))
+    if(dprest && getPestigePower().gt(player.prestigePower))
     {
         reset(1);
         prestTime = 0;
@@ -83,5 +83,5 @@ function Loop() {
     if (autotrans >= 1) AutoTransfer();
     if (autogen) AutoGenerator();
     prestTime+=50;
-    document.getElementById("PP/sec").innerHTML = format(prestPerMs*1000) + "PP/s";
+    document.getElementById("PP/sec").innerHTML = format(new Decimal(prestPerMs*1000)) + "PP/s";
 }
