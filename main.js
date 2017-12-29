@@ -4,6 +4,7 @@ var prestTime = 0;
 var autotrans = 0;
 var prestPerMs = 0;
 var dprest = false;
+var maxPP = 0;
 var Tab = document.getElementById('generatorsTab');
 Tab.insertAdjacentHTML('beforeend', '<form> Auto-Generator: <input type="checkbox" id="genautoselect"><br>Auto-Prestige: <input type="text" id="prestautoamnt" defaultValue="0"><br>Dynamic-Prestige: <input type="checkbox" id="dynamicprestselect"><b id="PP/sec"></b><br>Auto-Transfer: <input type="text" id="transautoamnt" defaultValue="0"></form><Button onclick="UpdateAA()">Start</Button><br><span>Auto Attractor V0.7<br>by IkerStream</span>')
 
@@ -41,14 +42,15 @@ function AutoPrestige() {
 
 function DynamicAutoPrestige()
 {
-if(getPrestigePower().gt(player.prestigePower) && prestTime%1000 == 0)
+    if(getPrestigePower().gt(maxPP)) maxPP = getPrestigePower();
+if(maxPP.gt(player.prestigePower) && prestTime%1000 == 0)
 {
-    x = getPrestigePower().divide(prestTime);
+    x = maxPP.divide(prestTime);
     if(x<prestPerMs)
     {
         reset(1);
         prestTime = 0;
-        prestPerMs;
+        prestPerMs = 0;
     }else
     {
     prestPerMs = x;
