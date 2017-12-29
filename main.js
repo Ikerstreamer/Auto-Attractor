@@ -74,7 +74,7 @@ function AutoTransfer() {
 }
 
 function Loop() {
-    if (dprest = true)DynamicAutoPrestige();
+    if (dprest)DynamicAutoPrestige();
     else if (autoprest > 1) AutoPrestige();
     if (autotrans >= 1) AutoTransfer();
     if (autogen) AutoGenerator();
