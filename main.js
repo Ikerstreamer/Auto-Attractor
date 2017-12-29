@@ -11,6 +11,12 @@ function UpdateAA() {
     setInterval(Loop, 50);
     autogen = document.getElementById("genautoselect").checked;
     dprest = document.getElementById("dynamicprestselect").checked;
+    if(dprest)
+    {
+        reset(1);
+        prestTime = 0;
+        prestPerSec;
+    }
     if (!isNaN(document.getElementById("prestautoamnt").value)) autoprest = parseFloat(document.getElementById("prestautoamnt").value);
     if (!isNaN(document.getElementById("transautoamnt").value)) autotrans = parseInt(document.getElementById("transautoamnt").value);
 }
@@ -42,7 +48,9 @@ if(getPrestigePower().gt(player.prestigePower))
     {
         reset(1);
         prestTime = 0;
+        prestPerSec;
     }
+    prestPerSec = x;
 }
 }
 
