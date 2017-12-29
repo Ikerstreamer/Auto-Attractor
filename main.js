@@ -55,10 +55,10 @@ function AutoTransfer() {
 }
 
 function Loop() {
-    if (autogen) AutoGenerator();
     if (dprest = true)DynamicAutoPrestige();
     else if (autoprest > 1) AutoPrestige();
     if (autotrans >= 1) AutoTransfer();
+    if (autogen) AutoGenerator();
     prestTime+=0.05;
     document.getElementById("PP/sec").innerHTML = prestPerSec + "PP/s"
 }
