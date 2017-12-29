@@ -48,7 +48,7 @@ if(getPrestigePower().gt(player.prestigePower) && prestTime%1000 == 0)
     {
         reset(1);
         prestTime = 0;
-        prestPerSec;
+        prestPerMs;
     }else
     {
     prestPerMs = x;
@@ -79,5 +79,5 @@ function Loop() {
     if (autotrans >= 1) AutoTransfer();
     if (autogen) AutoGenerator();
     prestTime+=50;
-    document.getElementById("PP/sec").innerHTML = Math.round(prestPerMs*1000) + "PP/s";
+    document.getElementById("PP/sec").innerHTML = format(prestPerMs*1000) + "PP/s";
 }
