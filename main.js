@@ -17,6 +17,7 @@ function UpdateAA() {
         reset(1);
         prestTime = 0;
         prestPerMs = 0;
+        maxPP = 0;
     }
     if (!isNaN(document.getElementById("prestautoamnt").value)) autoprest = parseFloat(document.getElementById("prestautoamnt").value);
     if (!isNaN(document.getElementById("transautoamnt").value)) autotrans = parseInt(document.getElementById("transautoamnt").value);
@@ -43,7 +44,7 @@ function AutoPrestige() {
 function DynamicAutoPrestige()
 {
     if(getPrestigePower().gt(maxPP)) maxPP = getPrestigePower();
-if(maxPP.gt(player.prestigePower) && prestTime%1000 == 0)
+if(getPrestigePower.gt(player.prestigePower) && prestTime%1000 == 0)
 {
     x = maxPP.divide(prestTime);
     if(x<prestPerMs)
@@ -51,6 +52,7 @@ if(maxPP.gt(player.prestigePower) && prestTime%1000 == 0)
         reset(1);
         prestTime = 0;
         prestPerMs = 0;
+        maxPP = 0;
     }else
     {
     prestPerMs = x;
