@@ -41,7 +41,7 @@ function AutoPrestige() {
 
 function DynamicAutoPrestige()
 {
-if(getPrestigePower().gt(player.prestigePower) && prestTime%1 == 0)
+if(getPrestigePower().gt(player.prestigePower) && prestTime%1 === 0)
 {
     x = getPrestigePower().divide(prestTime);
     if(x<prestPerSec)
