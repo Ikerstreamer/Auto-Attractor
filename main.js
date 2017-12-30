@@ -81,6 +81,9 @@ if(getPrestigePower().gt(player.prestigePower) && prestTime%1000 == 0 && player.
     {
     prestPerMs = x;
     }
+}else
+{
+prestPerMs = maxPP/prestTime;
 }
      num = Math.pow(autotrans, 3)
         if (player.prestigeUpgrades.includes(13) && getPrestigePower().gt(num * 500)){
