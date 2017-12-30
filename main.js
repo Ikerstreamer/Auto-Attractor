@@ -9,13 +9,26 @@ var dtrans = false;
 var maxPP = 0;
 var TPcount = 0;
 var Tab = document.getElementById('generatorsTab');
-Tab.insertAdjacentHTML('beforeend', '<form> Auto-Generator: <input type="checkbox" id="genautoselect"><br>Dynamic-Prestige: <input type="checkbox" id="dynamicprestselect" checked><b id="PP/sec"></b><br>Auto-Prestige: <input type="text" id="prestautoamnt" defaultValue="0"><br>Dynamic-Transfer: <input type="checkbox" id="dynamictransselect" checked><b id="TP/sec"></b><br>Auto-Transfer: <input type="text" id="transautoamnt" defaultValue="0"></form><Button onclick="UpdateAA()">Start</Button><br><span>Auto Attractor V0.7.1<br>by IkerStream</span>')
+Tab.insertAdjacentHTML('beforeend', '<form> Auto-Generator: <input type="checkbox" id="genautoselect"><br>Dynamic-Prestige: <input type="checkbox" id="dynamicprestselect" checked><br>Auto-Prestige: <b id="PP/sec"></b><input type="text" id="prestautoamnt" defaultValue="0"><br>Dynamic-Transfer: <input type="checkbox" id="dynamictransselect" checked><br>Auto-Transfer: <b id="TP/sec"></b><input type="text" id="transautoamnt" defaultValue="0"></form><Button onclick="UpdateAA()">Start</Button><br><span>Auto Attractor V0.7.1<br>by IkerStream</span>')
 
 setInterval(function(){
-if(document.getElementById("dynamicprestselect").checked)document.getElementById("prestautoamnt").style.display = "none";
-    else document.getElementById("prestautoamnt").style.display = "inline-block";
-    if(document.getElementById("dynamictransselect").checked)document.getElementById("transautoamnt").style.display = "none";
-    else document.getElementById("transautoamnt").style.display = "inline-block";
+if(document.getElementById("dynamicprestselect").checked) {
+    document.getElementById("prestautoamnt").style.display = "none";
+    document.getElementById("PP/sec").style.display = "inline-block";
+
+}
+    else {
+        document.getElementById("prestautoamnt").style.display = "inline-block";
+        document.getElementById("PP/sec").style.display = "none";
+    }
+    if(document.getElementById("dynamictransselect").checked) {
+        document.getElementById("transautoamnt").style.display = "none";
+    document.getElementById("TP/sec").style.display = "inline-block";       
+    }
+    else {
+        document.getElementById("transautoamnt").style.display = "inline-block";
+        document.getElementById("TP/sec").style.display = "none";
+    }
 },100)
 
 function UpdateAA() {
