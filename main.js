@@ -13,7 +13,7 @@ var TPcount = 0;
 var transBuffer = 2.5;
 var prestBuffer = 2.5;
 var Tab = document.getElementById('generatorsTab');
-Tab.insertAdjacentHTML('beforeend', '<form> Auto-Generator: <input type="checkbox" id="genautoselect" checked><br>Dynamic-Prestige: <input type="checkbox" id="dynamicprestselect" checked>  Buffer: <select id="prestbufferamnt"><option value="0">Off</option><option value="2.5">2.5%</option><option value="5">5%</option><option value="7.5">7.5%</option><option value="10">10%</option></select><br>Auto-Prestige: <b id="PP/sec"></b><input type="text" id="prestautoamnt" defaultValue="0"><br>Dynamic-Transfer: <input type="checkbox" id="dynamictransselect" checked>  Buffer:<select id="transbufferamnt"><option value="0">Off</option><option value="2.5">2.5%</option><option value="5">5%</option><option value="7.5">7.5%</option><option value="10">10%</option></select><br>Auto-Transfer: <b id="TP/sec"></b><input type="text" id="transautoamnt" defaultValue="0"></form><Button onclick="UpdateAA()">Start</Button><br><span>Auto Attractor V0.9.3<br>by IkerStream</span>')
+Tab.insertAdjacentHTML('beforeend', '<form> Auto-Generator: <input type="checkbox" id="genautoselect" checked><br>Dynamic-Prestige: <input type="checkbox" id="dynamicprestselect" checked>  Buffer: <select id="prestbufferamnt"><option value="0">Off</option><option value="2.5">2.5%</option><option value="5">5%</option><option value="7.5">7.5%</option><option value="10">10%</option></select><br>Auto-Prestige: <b id="PP/sec"></b><input type="text" id="prestautoamnt" defaultValue="0"><br>Dynamic-Transfer: <input type="checkbox" id="dynamictransselect" checked>  Buffer:<select id="transbufferamnt"><option value="0">Off</option><option value="2.5">2.5%</option><option value="5">5%</option><option value="7.5">7.5%</option><option value="10">10%</option></select><br>Auto-Transfer: <b id="TP/sec"></b><input type="text" id="transautoamnt" defaultValue="0"></form><Button onclick="UpdateAA()">Start</Button><br><span>Auto Attractor V0.9.5<br>by IkerStream</span>')
 
 setInterval(function(){
 if(document.getElementById("dynamicprestselect").checked) {
@@ -32,6 +32,19 @@ if(document.getElementById("dynamicprestselect").checked) {
     else {
         document.getElementById("transautoamnt").style.display = "inline-block";
         document.getElementById("TP/sec").style.display = "none";
+        
+        document.getElementById("pt1").addEventListener("click", function(){
+        bestPrestPerMs = 0;
+        maxPP = 0;
+        prestTinme = 0;
+        });
+        document.getElementById("pt2").addEventListener("click", function(){
+        bestTPPerMs = 0;
+        TPcount = 0;
+        bestPrestPerMs = 0;
+        maxPP = 0;
+        prestTinme = 0;
+        });
     }
 },100)
 
@@ -46,7 +59,7 @@ function UpdateAA() {
     {
         reset(1);
         prestTime = 0;
-        prestPerMs = 0;
+        bestPrestPerMs = 0;
         maxPP = 0;
     }
     if (!isNaN(document.getElementById("prestautoamnt").value)) autoprest = parseFloat(document.getElementById("prestautoamnt").value);
@@ -57,16 +70,25 @@ function AutoPrestige() {
     if (getPrestigePower().gte(player.prestigePower.times(autoprest)) && player.points.gte(1e40)){ 
         reset(1);
         prestTime = 0;
+         prestTime = 0;
+        bestPrestPerMs = 0;
+        maxPP = 0;
     }
     else {
         num = Math.pow(autotrans, 3)
         if (player.prestigeUpgrades.includes(13) && getPrestigePower().gt(num * 500)){
             reset(1);
             prestTime = 0;
+             prestTime = 0;
+        bestPrestPerMs = 0;
+        maxPP = 0;
         }
         else if (getPrestigePower().gt(num * 1000)) {
             reset(1);
-            prestTime = 0;   
+            prestTime = 0; 
+             prestTime = 0;
+        bestPrestPerMs = 0;
+        maxPP = 0;
         }
     }
 }
@@ -92,10 +114,14 @@ if(getPrestigePower().gt(player.prestigePower) && prestTime%1000 == 0 && player.
         if (player.prestigeUpgrades.includes(13) && getPrestigePower().gt(num * 500)){
             reset(1);
             prestTime = 0;
+        bestPrestPerMs = 0;
+        maxPP = 0;
         }
         else if (getPrestigePower().gt(num * 1000)) {
             reset(1);
-            prestTime = 0;   
+             prestTime = 0;
+        bestPrestPerMs = 0;
+        maxPP = 0;   
         }
 }
 
@@ -104,7 +130,14 @@ function AutoGenerator() {
 }
 
 function AutoTransfer() {
-    if (getPrestigePoints().gte(autotrans)) reset(2);
+    if (getPrestigePoints().gte(autotrans)){
+        reset(2);
+       bestTPPerMs = 0;
+        TPcount = 0;
+         prestTime = 0;
+        bestPrestPerMs = 0;
+        maxPP = 0;
+    }
 }
 
 function DynamicAutoTransfer() {
@@ -116,6 +149,9 @@ if(getPrestigePoints().gt(TPcount))
         reset(2);
         bestTPPerMs = 0;
         TPcount = 0;
+         prestTime = 0;
+        bestPrestPerMs = 0;
+        maxPP = 0;
     }else 
     {
         TPcount = getPrestigePoints();
@@ -135,4 +171,5 @@ function Loop() {
     document.getElementById("PP/sec").innerHTML = format(x) + "PP/s";
     x = new Decimal(TPPerMs*60000)
     document.getElementById("TP/sec").innerHTML = format(x,3) + "TP/m";
+    supernovaPlaytime
 }
