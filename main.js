@@ -12,7 +12,7 @@ function UpdateAA() {
     setInterval(Loop, 50);
     autogen = document.getElementById("genautoselect").checked;
     dprest = document.getElementById("dynamicprestselect").checked;
-    if(dprest && getPestigePower().gt(player.prestigePower))
+    if(dprest && getPrestigePower().gt(player.prestigePower))
     {
         reset(1);
         prestTime = 0;
