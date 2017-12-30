@@ -130,6 +130,6 @@ function Loop() {
     prestTime+=50;
     x = new Decimal(prestPerMs*1000)
     document.getElementById("PP/sec").innerHTML = format(x) + "PP/s";
-    x = new Decimal(TPPerMs*1000)
-    document.getElementById("TP/sec").innerHTML = format(x,3) + "TP/s";
+    x = new Decimal(TPPerMs*60000)
+    document.getElementById("TP/sec").innerHTML = format(x,3) + "TP/m";
 }
