@@ -3,21 +3,26 @@ var autoprest = 0;
 var prestTime = 0;
 var autotrans = 0;
 var prestPerMs = 0;
+var TPPerMs = 0;
 var dprest = false;
+var dtrans = false;
 var maxPP = 0;
 var TPcount = 0;
 var Tab = document.getElementById('generatorsTab');
-Tab.insertAdjacentHTML('beforeend', '<form> Auto-Generator: <input type="checkbox" id="genautoselect"><br>Dynamic-Prestige: <input type="checkbox" id="dynamicprestselect" checked><b id="PP/sec"></b><br>Auto-Prestige: <input type="text" id="prestautoamnt" defaultValue="0"><br>Auto-Transfer: <input type="text" id="transautoamnt" defaultValue="0"></form><Button onclick="UpdateAA()">Start</Button><br><span>Auto Attractor V0.7.1<br>by IkerStream</span>')
+Tab.insertAdjacentHTML('beforeend', '<form> Auto-Generator: <input type="checkbox" id="genautoselect"><br>Dynamic-Prestige: <input type="checkbox" id="dynamicprestselect" checked><b id="PP/sec"></b><br>Auto-Prestige: <input type="text" id="prestautoamnt" defaultValue="0"><br>Dynamic-Transfer: <input type="checkbox" id="dynamictransselect" checked><b id="TP/sec"></b><br>Auto-Transfer: <input type="text" id="transautoamnt" defaultValue="0"></form><Button onclick="UpdateAA()">Start</Button><br><span>Auto Attractor V0.7.1<br>by IkerStream</span>')
 
 setInterval(function(){
 if(document.getElementById("dynamicprestselect").checked)document.getElementById("prestautoamnt").style.display = "none";
     else document.getElementById("prestautoamnt").style.display = "inline-block";
+    if(document.getElementById("dynamictransselect").checked)document.getElementById("transautoamnt").style.display = "none";
+    else document.getElementById("transautoamnt").style.display = "inline-block";
 },100)
 
 function UpdateAA() {
     setInterval(Loop, 50);
     autogen = document.getElementById("genautoselect").checked;
     dprest = document.getElementById("dynamicprestselect").checked;
+    dtrans = document.getElementById("dynamictransselect").checked;
     if(dprest && getPrestigePower().gt(player.prestigePower) && player.points.gte(1e40))
     {
         reset(1);
@@ -84,15 +89,31 @@ function AutoTransfer() {
 }
 
 function DynamicAutoTransfer() {
-if()
+if(player.prestigePoints.gt(TPcount))
+{
+    x=player.prestigePoints.divide(player.transferPlaytime);
+    if(x<TPPerMs)
+    {
+        reset(2);
+        TPPerMs = 0;
+        TPcount = 0;
+    }else 
+    {
+        TPcount = player.prestigePoints;
+        TPPerMs = x;
+    }
+}
 }
 
 function Loop() {
-    if (dprest)DynamicAutoPrestige();
+    if (dprest) DynamicAutoPrestige();
     else if (autoprest > 1) AutoPrestige();
-    if (autotrans >= 1) AutoTransfer();
+    if (dtrans) DynamicAutoTransfer();
+    else if (autotrans >= 1) AutoTransfer();
     if (autogen) AutoGenerator();
     prestTime+=50;
     x = new Decimal(prestPerMs*1000)
     document.getElementById("PP/sec").innerHTML = format(x) + "PP/s";
+    x = new Decimal(TPPerMs*1000)
+    document.getElementById("TP/sec").innerHTML = format(x,3) + "TP/s";
 }
