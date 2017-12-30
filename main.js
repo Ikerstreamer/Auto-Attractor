@@ -89,9 +89,9 @@ function AutoTransfer() {
 }
 
 function DynamicAutoTransfer() {
-if(player.prestigePoints.gt(TPcount))
+if(getPrestigePoints().gt(TPcount))
 {
-    x=player.prestigePoints.divide(player.transferPlaytime);
+    x=getPrestigePoints().divide(player.transferPlaytime);
     if(x<TPPerMs)
     {
         reset(2);
@@ -99,7 +99,7 @@ if(player.prestigePoints.gt(TPcount))
         TPcount = 0;
     }else 
     {
-        TPcount = player.prestigePoints;
+        TPcount = getPrestigePoints();
         TPPerMs = x;
     }
 }
