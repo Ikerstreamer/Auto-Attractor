@@ -5,8 +5,14 @@ var autotrans = 0;
 var prestPerMs = 0;
 var dprest = false;
 var maxPP = 0;
+var TPcount = 0;
 var Tab = document.getElementById('generatorsTab');
-Tab.insertAdjacentHTML('beforeend', '<form> Auto-Generator: <input type="checkbox" id="genautoselect"><br>Auto-Prestige: <input type="text" id="prestautoamnt" defaultValue="0"><br>Dynamic-Prestige: <input type="checkbox" id="dynamicprestselect" checked><b id="PP/sec"></b><br>Auto-Transfer: <input type="text" id="transautoamnt" defaultValue="0"></form><Button onclick="UpdateAA()">Start</Button><br><span>Auto Attractor V0.7.1<br>by IkerStream</span>')
+Tab.insertAdjacentHTML('beforeend', '<form> Auto-Generator: <input type="checkbox" id="genautoselect"><br>Dynamic-Prestige: <input type="checkbox" id="dynamicprestselect" checked><b id="PP/sec"></b><br>Auto-Prestige: <input type="text" id="prestautoamnt" defaultValue="0"><br>Auto-Transfer: <input type="text" id="transautoamnt" defaultValue="0"></form><Button onclick="UpdateAA()">Start</Button><br><span>Auto Attractor V0.7.1<br>by IkerStream</span>')
+
+setInterval(function(){
+if(document.getElementById("dynamicprestselect").checked)document.getElementById("prestautoamnt").style.display = "none";
+    else document.getElementById("prestautoamnt").style.display = "inline-block";
+},100)
 
 function UpdateAA() {
     setInterval(Loop, 50);
@@ -75,6 +81,10 @@ function AutoGenerator() {
 
 function AutoTransfer() {
     if (getPrestigePoints().gte(autotrans)) reset(2);
+}
+
+function DynamicAutoTransfer() {
+if()
 }
 
 function Loop() {
