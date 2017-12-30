@@ -83,5 +83,6 @@ function Loop() {
     if (autotrans >= 1) AutoTransfer();
     if (autogen) AutoGenerator();
     prestTime+=50;
-    document.getElementById("PP/sec").innerHTML = format(new Decimal(prestPerMs*1000)) + "PP/s";
+    x = new Decimal(prestPerMs*1000)
+    document.getElementById("PP/sec").innerHTML = format(x) + "PP/s";
 }
