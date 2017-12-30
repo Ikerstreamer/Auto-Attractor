@@ -3,13 +3,17 @@ var autoprest = 0;
 var prestTime = 0;
 var autotrans = 0;
 var prestPerMs = 0;
+var bestPrestPerMs = 0;
 var TPPerMs = 0;
+var bestTPPerMs = 0;
 var dprest = false;
 var dtrans = false;
 var maxPP = 0;
 var TPcount = 0;
+var transBuffer = 2.5;
+var prestBuffer = 2.5;
 var Tab = document.getElementById('generatorsTab');
-Tab.insertAdjacentHTML('beforeend', '<form> Auto-Generator: <input type="checkbox" id="genautoselect" checked><br>Dynamic-Prestige: <input type="checkbox" id="dynamicprestselect" checked><br>Auto-Prestige: <b id="PP/sec"></b><input type="text" id="prestautoamnt" defaultValue="0"><br>Dynamic-Transfer: <input type="checkbox" id="dynamictransselect" checked><br>Auto-Transfer: <b id="TP/sec"></b><input type="text" id="transautoamnt" defaultValue="0"></form><Button onclick="UpdateAA()">Start</Button><br><span>Auto Attractor V0.9.1<br>by IkerStream</span>')
+Tab.insertAdjacentHTML('beforeend', '<form> Auto-Generator: <input type="checkbox" id="genautoselect" checked><br>Dynamic-Prestige: <input type="checkbox" id="dynamicprestselect" checked>  Buffer: <select id="prestbufferamnt"><option value="0">Off</option><option value="2.5">2.5%</option><option value="5">5%</option><option value="7.5">7.5%</option><option value="10%">10</option></select><br>Auto-Prestige: <b id="PP/sec"></b><input type="text" id="prestautoamnt" defaultValue="0"><br>Dynamic-Transfer: <input type="checkbox" id="dynamictransselect" checked>  Buffer:<select id="transbufferamnt"><option value="0">Off</option><option value="2.5">2.5%</option><option value="5">5%</option><option value="7.5">7.5%</option><option value="10%">10</option></select><br>Auto-Transfer: <b id="TP/sec"></b><input type="text" id="transautoamnt" defaultValue="0"></form><Button onclick="UpdateAA()">Start</Button><br><span>Auto Attractor V0.9.1<br>by IkerStream</span>')
 
 setInterval(function(){
 if(document.getElementById("dynamicprestselect").checked) {
@@ -70,8 +74,8 @@ function DynamicAutoPrestige()
     if(getPrestigePower().gt(maxPP)) maxPP = getPrestigePower();
 if(getPrestigePower().gt(player.prestigePower) && prestTime%1000 == 0 && player.points.gte(1e40))
 {
-    x = maxPP/prestTime;
-    if(x<prestPerMs)
+    prestPerMs = maxPP/prestTime;
+    if(prestPerMs<bestPrestPerMs-(bestPrestPerMs*0.025))
     {
         reset(1);
         prestTime = 0;
@@ -107,8 +111,8 @@ function AutoTransfer() {
 function DynamicAutoTransfer() {
 if(getPrestigePoints().gt(TPcount))
 {
-    x=getPrestigePoints().divide(player.transferPlaytime);
-    if(x<TPPerMs)
+    TPPerMs=getPrestigePoints().divide(player.transferPlaytime);
+    if(TPPerMs<bestTPPerMs-(bestTPPerMs*0.025))
     {
         reset(2);
         TPPerMs = 0;
@@ -116,7 +120,7 @@ if(getPrestigePoints().gt(TPcount))
     }else 
     {
         TPcount = getPrestigePoints();
-        TPPerMs = x;
+        if(TPPerMs>bestTPPerMs)bestTPPerMs=TPPerMs;
     }
 }
 }
