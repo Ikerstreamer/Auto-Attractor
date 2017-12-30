@@ -13,7 +13,7 @@ var TPcount = 0;
 var transBuffer = 2.5;
 var prestBuffer = 2.5;
 var Tab = document.getElementById('generatorsTab');
-Tab.insertAdjacentHTML('beforeend', '<form> Auto-Generator: <input type="checkbox" id="genautoselect" checked><br>Dynamic-Prestige: <input type="checkbox" id="dynamicprestselect" checked>  Buffer: <select id="prestbufferamnt"><option value="0">Off</option><option value="2.5">2.5%</option><option value="5">5%</option><option value="7.5">7.5%</option><option value="10%">10</option></select><br>Auto-Prestige: <b id="PP/sec"></b><input type="text" id="prestautoamnt" defaultValue="0"><br>Dynamic-Transfer: <input type="checkbox" id="dynamictransselect" checked>  Buffer:<select id="transbufferamnt"><option value="0">Off</option><option value="2.5">2.5%</option><option value="5">5%</option><option value="7.5">7.5%</option><option value="10%">10</option></select><br>Auto-Transfer: <b id="TP/sec"></b><input type="text" id="transautoamnt" defaultValue="0"></form><Button onclick="UpdateAA()">Start</Button><br><span>Auto Attractor V0.9.1<br>by IkerStream</span>')
+Tab.insertAdjacentHTML('beforeend', '<form> Auto-Generator: <input type="checkbox" id="genautoselect" checked><br>Dynamic-Prestige: <input type="checkbox" id="dynamicprestselect" checked>  Buffer: <select id="prestbufferamnt"><option value="0">Off</option><option value="2.5">2.5%</option><option value="5">5%</option><option value="7.5">7.5%</option><option value="10%">10</option></select><br>Auto-Prestige: <b id="PP/sec"></b><input type="text" id="prestautoamnt" defaultValue="0"><br>Dynamic-Transfer: <input type="checkbox" id="dynamictransselect" checked>  Buffer:<select id="transbufferamnt"><option value="0">Off</option><option value="2.5">2.5%</option><option value="5">5%</option><option value="7.5">7.5%</option><option value="10%">10</option></select><br>Auto-Transfer: <b id="TP/sec"></b><input type="text" id="transautoamnt" defaultValue="0"></form><Button onclick="UpdateAA()">Start</Button><br><span>Auto Attractor V0.9.3<br>by IkerStream</span>')
 
 setInterval(function(){
 if(document.getElementById("dynamicprestselect").checked) {
@@ -40,6 +40,8 @@ function UpdateAA() {
     autogen = document.getElementById("genautoselect").checked;
     dprest = document.getElementById("dynamicprestselect").checked;
     dtrans = document.getElementById("dynamictransselect").checked;
+    prestBuffer = document.getElementById("prestbufferamnt").value;
+    transBuffer = document.getElementById("transbufferamnt").value;
     if(dprest && getPrestigePower().gt(player.prestigePower) && player.points.gte(1e40))
     {
         reset(1);
@@ -75,7 +77,7 @@ function DynamicAutoPrestige()
 if(getPrestigePower().gt(player.prestigePower) && prestTime%1000 == 0 && player.points.gte(1e40))
 {
     prestPerMs = maxPP/prestTime;
-    if(prestPerMs<bestPrestPerMs-(bestPrestPerMs*0.025))
+    if(prestPerMs<bestPrestPerMs-(bestPrestPerMs*(prestBuffer/100)))
     {
         reset(1);
         prestTime = 0;
@@ -112,7 +114,7 @@ function DynamicAutoTransfer() {
 if(getPrestigePoints().gt(TPcount))
 {
     TPPerMs=getPrestigePoints().divide(player.transferPlaytime);
-    if(TPPerMs<bestTPPerMs-(bestTPPerMs*0.025))
+    if(TPPerMs<bestTPPerMs-(bestTPPerMs*(transBuffer/100)))
     {
         reset(2);
         TPPerMs = 0;
