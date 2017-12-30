@@ -12,7 +12,7 @@ function UpdateAA() {
     setInterval(Loop, 50);
     autogen = document.getElementById("genautoselect").checked;
     dprest = document.getElementById("dynamicprestselect").checked;
-    if(dprest && getPrestigePower().gt(player.prestigePower))
+    if(dprest && getPrestigePower().gt(player.prestigePower) && player.points.gte(1e40))
     {
         reset(1);
         prestTime = 0;
@@ -24,7 +24,7 @@ function UpdateAA() {
 }
 
 function AutoPrestige() {
-    if (getPrestigePower().gte(player.prestigePower.times(autoprest))){ 
+    if (getPrestigePower().gte(player.prestigePower.times(autoprest)) && player.points.gte(1e40)){ 
         reset(1);
         prestTime = 0;
     }
@@ -44,7 +44,7 @@ function AutoPrestige() {
 function DynamicAutoPrestige()
 {
     if(getPrestigePower().gt(maxPP)) maxPP = getPrestigePower();
-if(getPrestigePower().gt(player.prestigePower) && prestTime%1000 == 0)
+if(getPrestigePower().gt(player.prestigePower) && prestTime%1000 == 0 && player.points.gte(1e40))
 {
     x = maxPP/prestTime;
     if(x<prestPerMs)
