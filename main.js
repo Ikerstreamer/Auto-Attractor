@@ -36,14 +36,21 @@ if(document.getElementById("dynamicprestselect").checked) {
         document.getElementById("pt1").addEventListener("click", function(){
         bestPrestPerMs = 0;
         maxPP = 0;
-        prestTinme = 0;
+        prestTime = 0;
         });
         document.getElementById("pt2").addEventListener("click", function(){
         bestTPPerMs = 0;
         TPcount = 0;
         bestPrestPerMs = 0;
         maxPP = 0;
-        prestTinme = 0;
+        prestTime = 0;
+        });
+         document.getElementById("pt3").addEventListener("click", function(){
+        bestTPPerMs = 0;
+        TPcount = 0;
+        bestPrestPerMs = 0;
+        maxPP = 0;
+        prestTime = 0;
         });
     }
 },100)
