@@ -81,7 +81,7 @@ if(getPrestigePower().gt(player.prestigePower) && prestTime%1000 == 0 && player.
     {
         reset(1);
         prestTime = 0;
-        prestPerMs = 0;
+        bestPrestPerMs = 0;
         maxPP = 0;
     }else
     {
@@ -114,7 +114,7 @@ if(getPrestigePoints().gt(TPcount))
     if(TPPerMs<bestTPPerMs-(bestTPPerMs*(transBuffer/100)))
     {
         reset(2);
-        TPPerMs = 0;
+        bestTPPerMs = 0;
         TPcount = 0;
     }else 
     {
