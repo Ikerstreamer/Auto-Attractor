@@ -88,6 +88,7 @@ function AutoPrestige() {
             prestTime = 0;
             bestPrestPerMs = 0;
             maxPP = 0;
+            return;
         } 
         } 
         if (getPrestigePower().gt(num * 1000)) {
@@ -96,6 +97,7 @@ function AutoPrestige() {
             prestTime = 0;
             bestPrestPerMs = 0;
             maxPP = 0;
+            return;
         }
     }
 }
