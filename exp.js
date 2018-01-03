@@ -72,7 +72,7 @@ function UpdateAA() {
 }
 
 function AutoPrestige() {
-    if (getPrestigePower().gte(player.prestigePower.times(autoprest)) && player.points.gte(1e40)) {
+    if (getPrestigePower().gte(player.prestigePower.times(autoprest)) && player.stars.gte(1e40)) {
         reset(1);
         prestTime = 0;
         prestTime = 0;
@@ -99,7 +99,7 @@ function AutoPrestige() {
 function DynamicAutoPrestige() {
     if (getPrestigePower().gt(maxPP)) maxPP = getPrestigePower();
     prestPerMs = maxPP / prestTime;
-    if (getPrestigePower().gt(player.prestigePower) && prestTime % 1000 == 0 && player.points.gte(1e40)) {
+    if (getPrestigePower().gt(player.prestigePower) && prestTime % 1000 == 0 && player.stars.gte(1e40)) {
         if (prestPerMs < bestPrestPerMs - (bestPrestPerMs * (prestBuffer / 100))) {
             reset(1);
             prestTime = 0;
@@ -156,7 +156,7 @@ function DynamicAutoTransfer() {
 }
 
 function AutoSupernova() {
-    if (player.points.gte(Number.MAX_VALUE)) {
+    if (player.stars.gte(Number.MAX_VALUE)) {
         reset(3);
         bestTPPerMs = 0;
         TPcount = 0;
