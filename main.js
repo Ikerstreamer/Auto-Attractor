@@ -13,7 +13,7 @@ var maxPP = 0;
 var TPcount = 0;
 var transBuffer = 2.5;
 var prestBuffer = 2.5;
-var Tab = document.getElementById('generatorsTab');
+var Tab = document.getElementById('genTab');
 Tab.insertAdjacentHTML('beforeend', '<form> Auto-Generator: <input type="checkbox" id="genautoselect" checked><br>Dynamic-Prestige: <input type="checkbox" id="dynamicprestselect" checked>  Buffer: <select id="prestbufferamnt"><option value="0">Off</option><option value="2.5">2.5%</option><option value="5">5%</option><option value="7.5">7.5%</option><option value="10">10%</option></select><br>Auto-Prestige: <b id="PP/sec"></b><input type="text" id="prestautoamnt" defaultValue="0"><br>Dynamic-Transfer: <input type="checkbox" id="dynamictransselect" checked>  Buffer:<select id="transbufferamnt"><option value="0">Off</option><option value="2.5">2.5%</option><option value="5">5%</option><option value="7.5">7.5%</option><option value="10">10%</option></select><br>Auto-Transfer: <b id="TP/sec"></b><input type="text" id="transautoamnt" defaultValue="0"><br>Auto-Supernova: <input type="checkbox" id="superautoselect" checked></form><Button onclick="UpdateAA()">Start</Button><br><span>Auto Attractor V0.9.7<br>by IkerStream</span>')
 
 setInterval(function() {
@@ -124,7 +124,7 @@ function DynamicAutoPrestige() {
 }
 
 function AutoGenerator() {
-    for (i = 10; i > 0; i--) buyGen(i);
+    for (i = 10; i > 0; i--) buyGen(i,10);
 }
 
 function AutoTransfer() {
