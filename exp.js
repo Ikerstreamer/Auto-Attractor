@@ -110,7 +110,7 @@ function DynamicAutoPrestige() {
         }
     }
     num = Math.pow(autotrans, 3)
-    if (player.TransferUpgrades.includes(13) && getPrestigePower().gt(num * 500)) {
+    if (player.prestigeUpgrades.includes(13) && getPrestigePower().gt(num * 500)) {
         reset(1);
         prestTime = 0;
         bestPrestPerMs = 0;
@@ -124,11 +124,11 @@ function DynamicAutoPrestige() {
 }
 
 function AutoGenerator() {
-    for (i = 10; i > 0; i--) buyGen(i, 100);
+    for (i = 10; i > 0; i--) buyGenerator(i, 100);
 }
 
 function AutoTransfer() {
-    if (getTransferPoints().gte(autotrans)) {
+    if (getPrestigePoints().gte(autotrans)) {
         reset(2);
         bestTPPerMs = 0;
         TPcount = 0;
@@ -139,8 +139,8 @@ function AutoTransfer() {
 }
 
 function DynamicAutoTransfer() {
-    if (getTransferPoints().gt(TPcount)) {
-        TPPerMs = getTransferPoints().divide(player.transferPlaytime);
+    if (getPrestigePoints().gt(TPcount)) {
+        TPPerMs = getPrestigePoints().divide(player.transferPlaytime);
         if (TPPerMs < bestTPPerMs - (bestTPPerMs * (transBuffer / 100))) {
             reset(2);
             bestTPPerMs = 0;
@@ -149,7 +149,7 @@ function DynamicAutoTransfer() {
             bestPrestPerMs = 0;
             maxPP = 0;
         } else {
-            TPcount = getTransferPoints();
+            TPcount = getPrestigePoints();
             if (TPPerMs > bestTPPerMs) bestTPPerMs = TPPerMs;
         }
     }
@@ -179,4 +179,3 @@ function Loop() {
     x = new Decimal(TPPerMs * 60000)
     document.getElementById("TP/sec").innerHTML = format(x, 3) + "TP/m";
 }
-
