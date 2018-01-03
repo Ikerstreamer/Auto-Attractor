@@ -124,10 +124,7 @@ function DynamicAutoPrestige() {
 }
 
 function AutoGenerator() {
-    for(var i = highestTransferTier+1;i>0;i--)
-    {
-    buyGen(i,10);
-    }
+ maxAll();
 }
 
 function AutoTransfer() {
