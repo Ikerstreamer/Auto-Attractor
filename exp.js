@@ -80,7 +80,7 @@ function AutoPrestige() {
         maxPP = 0;
     } else {
         num = Math.pow(autotrans, 3)
-        if (player.TransferUpgrades.includes(13) && getPrestigePower().gt(num * 500)) {
+        if (player.transferUpgrades.includes(13) && getPrestigePower().gt(num * 500)) {
             reset(1);
             prestTime = 0;
             prestTime = 0;
