@@ -32,19 +32,19 @@ setInterval(function() {
         document.getElementById("transautoamnt").style.display = "inline-block";
         document.getElementById("TP/sec").style.display = "none";
     }
-    document.getElementById("pt1").addEventListener("click", function() {
+    document.getElementById("prestige1").addEventListener("click", function() {
         bestPrestPerMs = 0;
         maxPP = 0;
         prestTime = 0;
     });
-    document.getElementById("pt2").addEventListener("click", function() {
+    document.getElementById("prestige2").addEventListener("click", function() {
         bestTPPerMs = 0;
         TPcount = 0;
         bestPrestPerMs = 0;
         maxPP = 0;
         prestTime = 0;
     });
-    document.getElementById("pt3").addEventListener("click", function() {
+    document.getElementById("prestige3").addEventListener("click", function() {
         bestTPPerMs = 0;
         TPcount = 0;
         bestPrestPerMs = 0;
@@ -80,7 +80,7 @@ function AutoPrestige() {
         maxPP = 0;
     } else {
         num = Math.pow(autotrans, 3)
-        if (player.prestigeUpgrades.includes(13) && getPrestigePower().gt(num * 500)) {
+        if (player.TransferUpgrades.includes(13) && getPrestigePower().gt(num * 500)) {
             reset(1);
             prestTime = 0;
             prestTime = 0;
@@ -115,7 +115,7 @@ function DynamicAutoPrestige() {
         prestTime = 0;
         bestPrestPerMs = 0;
         maxPP = 0;
-    } else if (getPrestigePower().gt(num * 1000)) {
+    } else if (getTransferPower().gt(num * 1000)) {
         reset(1);
         prestTime = 0;
         bestPrestPerMs = 0;
@@ -124,11 +124,11 @@ function DynamicAutoPrestige() {
 }
 
 function AutoGenerator() {
-    for (i = 10; i > 0; i--) buyGenerator(i, 100);
+    for (i = 10; i > 0; i--) buyGen(i,10);
 }
 
 function AutoTransfer() {
-    if (getPrestigePoints().gte(autotrans)) {
+    if (getTransferPoints().gte(autotrans)) {
         reset(2);
         bestTPPerMs = 0;
         TPcount = 0;
@@ -139,8 +139,8 @@ function AutoTransfer() {
 }
 
 function DynamicAutoTransfer() {
-    if (getPrestigePoints().gt(TPcount)) {
-        TPPerMs = getPrestigePoints().divide(player.transferPlaytime);
+    if (getTransferPoints().gt(TPcount)) {
+        TPPerMs = getTransferPoints().divide(player.transferPlaytime);
         if (TPPerMs < bestTPPerMs - (bestTPPerMs * (transBuffer / 100))) {
             reset(2);
             bestTPPerMs = 0;
@@ -149,7 +149,7 @@ function DynamicAutoTransfer() {
             bestPrestPerMs = 0;
             maxPP = 0;
         } else {
-            TPcount = getPrestigePoints();
+            TPcount = getTransferPoints();
             if (TPPerMs > bestTPPerMs) bestTPPerMs = TPPerMs;
         }
     }
