@@ -136,7 +136,7 @@ function DynamicAutoPrestige() {
 }
 
 function AutoGenerator() {
-    for(i=10;i>0;i++)
+    for(i=10;i>0;i--)
     {
  buyGen(i);
     }
