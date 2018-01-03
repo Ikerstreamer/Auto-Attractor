@@ -124,7 +124,16 @@ function DynamicAutoPrestige() {
 }
 
 function AutoGenerator() {
-    for (i = 10; i > 0; i--) buyGen(i,10);
+    buyGen(10,10);
+    buyGen(9,10);
+    buyGen(8,10);
+    buyGen(7,10);
+    buyGen(6,10);
+    buyGen(5,10);
+    buyGen(4,10);
+    buyGen(3,10);
+    buyGen(2,10);
+    buyGen(1,10);
 }
 
 function AutoTransfer() {
