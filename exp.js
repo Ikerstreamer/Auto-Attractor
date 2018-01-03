@@ -61,7 +61,7 @@ function UpdateAA() {
     dtrans = document.getElementById("dynamictransselect").checked;
     prestBuffer = document.getElementById("prestbufferamnt").value;
     transBuffer = document.getElementById("transbufferamnt").value;
-    if (dprest && getPrestigePower().gt(player.prestigePower) && player.points.gte(1e40)) {
+    if (dprest && getPrestigePower().gt(player.prestigePower) && player.stars.gte(1e40)) {
         reset(1);
         prestTime = 0;
         bestPrestPerMs = 0;
