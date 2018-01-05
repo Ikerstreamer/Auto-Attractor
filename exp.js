@@ -128,7 +128,7 @@ function DynamicAutoPrestige() {
         return;
     } 
         }
-            if (getTransferPower().gt(num * 1000)) {
+            if (getPrestigePower().gt(num * 1000)) {
         reset(1);
         prestTime = 0;
         bestPrestPerMs = 0;
