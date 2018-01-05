@@ -141,8 +141,8 @@ function AutoGenerator() {
     for(i=10;i>0;i--)
     {
         setTimeout(function(){
-            buyGen(i);
-        },10/i);
+            buyGen(i,100);
+        },50/i);
     }
 }
 
