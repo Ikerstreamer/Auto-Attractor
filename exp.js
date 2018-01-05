@@ -1,4 +1,4 @@
-var AutoVersion = "Auto Attractor V0.9.8";
+var AutoVersion = "Auto Attractor V0.9.9";
 var autogen = true;
 var autosuper = true;
 var autoprest = 0;
@@ -138,11 +138,10 @@ function DynamicAutoPrestige() {
 }
 
 function AutoGenerator() {
+   updateTierCosts();
     for(i=10;i>0;i--)
     {
-        setTimeout(function(){
             buyGen(i,100);
-        },50/i);
     }
 }
 
