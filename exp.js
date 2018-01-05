@@ -140,7 +140,9 @@ function DynamicAutoPrestige() {
 function AutoGenerator() {
     for(i=10;i>0;i--)
     {
- buyGen(i);
+        setTimeout(function(){
+            buyGen(i);
+        },10/i);
     }
 }
 
