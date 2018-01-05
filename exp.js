@@ -80,7 +80,7 @@ function AutoPrestige() {
         maxPP = 0;
     } else {
         num = Math.pow(autotrans, 3)
-        if(transferUpgrades.length>0)
+        if(player.transferUpgrades.length>0)
         {
         if (player.transferUpgrades.includes(13) && getPrestigePower().gt(num * 500)) {
             reset(1);
@@ -116,7 +116,7 @@ function DynamicAutoPrestige() {
         }
     }
     num = Math.pow(autotrans, 3)
-    if(transferUpgrades.length>0)
+    if(player.rtransferUpgrades.length>0)
         {
     if (player.transferUpgrades.includes(13) && getPrestigePower().gt(num * 500)) {
         reset(1);
