@@ -138,7 +138,7 @@ function DynamicAutoPrestige() {
 }
 
 function AutoGenerator() {
-   updateTierCosts();
+   updateCosts();
     for(i=10;i>0;i--)
     {
             buyGen(i,100);
