@@ -138,8 +138,8 @@ function DynamicAutoPrestige() {
 }
 
 function AutoGenerator() {
-   for (i=10;i>0;i--) {
-		buyGen(i,100);
+   for (j=10;j>0;j--) {
+		buyGen(j,1e100);
     }   
 }
 
