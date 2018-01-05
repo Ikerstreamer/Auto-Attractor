@@ -138,11 +138,7 @@ function DynamicAutoPrestige() {
 }
 
 function AutoGenerator() {
-   updateCosts();
-    for(i=10;i>0;i--)
-    {
-            buyGen(i,100);
-    }
+   maxAll();
 }
 
 function AutoTransfer() {
