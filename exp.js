@@ -138,7 +138,21 @@ function DynamicAutoPrestige() {
 }
 
 function AutoGenerator() {
-   maxAll();
+   for (i=10;i>0;i--) {
+		var multiplier=Math.pow((player.currentChallenge==2)?2:1.5,i*(0.9+0.1*i)-((i==10&&player.transferUpgrades.includes(8))?0.5:0))
+		var bulk=Math.floor(player.stars.div(tierCosts[i-1]).times(multiplier-1).plus(1).log10()/Math.log10(multiplier))
+		if (bulk>0&&i>player.highestTransferTier) {
+			player.highestTransferTier=i
+		}
+		
+		player.stars=player.stars.sub(getCost(i,bulk))
+		player.generators[i-1].bought+=bulk
+		player.generators[i-1].amount=player.generators[i-1].amount.add(bulk)
+	
+		if (i==1&&bulk>0) getAch(1)
+		if (i==10&&bulk>0) getAch(2)
+	}
+	updateCosts()
 }
 
 function AutoTransfer() {
