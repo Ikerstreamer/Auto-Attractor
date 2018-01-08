@@ -140,6 +140,7 @@ function DynamicAutoPrestige() {
 function AutoGenerator() {
    for (j=10;j>0;j--){
 	buyGen(j,1e100);
+   }
 }
 
 function AutoTransfer() {
