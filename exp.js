@@ -222,7 +222,7 @@ function AutoSupernova() {
 
 function Loop() {
     if(autosuper) AutoSupernova();
-    if(autoTransUp) AutoTransferUpgrades();
+    if(autoTransUp && transferIndex<14) AutoTransferUpgrades();
     if (dprest) DynamicAutoPrestige();
     else if (autoprest > 1) AutoPrestige();
     if (dtrans) DynamicAutoTransfer();
