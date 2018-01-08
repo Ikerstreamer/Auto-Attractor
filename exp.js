@@ -1,6 +1,7 @@
 var AutoVersion = "Auto Attractor V0.9.10";
 var autogen = true;
 var autosuper = true;
+var autoTransUp = true;
 var autoprest = 0;
 var prestTime = 0;
 var autotrans = 0;
@@ -15,7 +16,7 @@ var TPcount = 0;
 var transBuffer = 2.5;
 var prestBuffer = 2.5;
 var Tab = document.getElementById('tabgen');
-Tab.insertAdjacentHTML('beforeend', '<form> Auto-Generator: <input type="checkbox" id="genautoselect" checked><br>Dynamic-Prestige: <input type="checkbox" id="dynamicprestselect" checked>  Buffer: <select id="prestbufferamnt"><option value="0">Off</option><option value="2.5">2.5%</option><option value="5">5%</option><option value="7.5">7.5%</option><option value="10">10%</option></select><br>Auto-Prestige: <b id="PP/sec"></b><input type="text" id="prestautoamnt" defaultValue="0"><br>Dynamic-Transfer: <input type="checkbox" id="dynamictransselect" checked>  Buffer:<select id="transbufferamnt"><option value="0">Off</option><option value="2.5">2.5%</option><option value="5">5%</option><option value="7.5">7.5%</option><option value="10">10%</option></select><br>Auto-Transfer: <b id="TP/sec"></b><input type="text" id="transautoamnt" defaultValue="0"><br>Auto-Supernova: <input type="checkbox" id="superautoselect" checked></form><Button onclick="UpdateAA()">Start</Button><br><span><b id="verName"></b><br>by IkerStream</span>')
+Tab.insertAdjacentHTML('beforeend', '<form> Auto-Generator: <input type="checkbox" id="genautoselect" checked><br>Dynamic-Prestige: <input type="checkbox" id="dynamicprestselect" checked>  Buffer: <select id="prestbufferamnt"><option value="0">Off</option><option value="2.5">2.5%</option><option value="5">5%</option><option value="7.5">7.5%</option><option value="10">10%</option></select><br>Auto-Prestige: <b id="PP/sec"></b><input type="text" id="prestautoamnt" defaultValue="0"><br>Dynamic-Transfer: <input type="checkbox" id="dynamictransselect" checked>  Buffer:<select id="transbufferamnt"><option value="0">Off</option><option value="2.5">2.5%</option><option value="5">5%</option><option value="7.5">7.5%</option><option value="10">10%</option></select><br>Auto-Transfer: <b id="TP/sec"></b><input type="text" id="transautoamnt" defaultValue="0"><br>Auto-Supernova: <input type="checkbox" id="superautoselect" checked><br>Auto-Transfer-Upgrades<input type="checkbox" id="transferupgradeautoselect"><div id="transupgrade"><b>Transfer Upgrade Priority</b><br><table><tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td><td></td><td></td></tr><tr><td></td><td></td></tr></table></div></form><Button onclick="UpdateAA()">Start</Button><br><span><b id="verName"></b><br>by IkerStream</span>')
 document.getElementById("verName").innerHTML = AutoVersion;
 
 setInterval(function() {
@@ -34,6 +35,9 @@ setInterval(function() {
         document.getElementById("transautoamnt").style.display = "inline-block";
         document.getElementById("TP/sec").style.display = "none";
     }
+    if(document.getElementById("transupgradeautoselect").checked) document.getElementById("transferupgrade").style.display = "inline-block"; 
+    else document.getElementById("transferupgrade").style.display = "none"; 
+    
     document.getElementById("prestige1").addEventListener("click", function() {
         bestPrestPerMs = 0;
         maxPP = 0;
@@ -59,6 +63,7 @@ function UpdateAA() {
     setInterval(Loop, 50);
     autogen = document.getElementById("genautoselect").checked;
     autosuper = document.getElementById("superautoselect").checked;
+    autoTransUp = document.getElementById("transferupgradeautoselect").checked;
     dprest = document.getElementById("dynamicprestselect").checked;
     dtrans = document.getElementById("dynamictransselect").checked;
     prestBuffer = document.getElementById("prestbufferamnt").value;
