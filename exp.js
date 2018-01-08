@@ -1,4 +1,4 @@
-var AutoVersion = "Auto Attractor V0.9.11";
+var AutoVersion = "Auto Attractor V0.9.12";
 var autogen = true;
 var autosuper = true;
 var autoTransUp = true;
