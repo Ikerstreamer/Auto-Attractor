@@ -182,7 +182,7 @@ function DynamicAutoTransfer() {
 
 function AutoTransferUpgrades() {
     while(player.transferUpgrades.includes(transferPriority[transferIndex]))transferIndex++;
-    var num = Math.pow(tupgCosts[transferPriority[transferIndex]], 3)
+    var num = Math.pow(tupgCosts[transferPriority[transferIndex]-1], 3)
     if(player.transferUpgrades.includes(13) && getPrestigePower().gt(num * 500))
     {
         reset(1);
@@ -195,7 +195,7 @@ function AutoTransferUpgrades() {
         bestPrestPerMs = 0;
         maxPP = 0;
     }
-    if(getTransferPoints().gte(tupgCosts[transferPriority[transferIndex]]))
+    if(getTransferPoints().gte(tupgCosts[transferPriority[transferIndex]-1]))
     {
             reset(2);
             bestTPPerMs = 0;
@@ -204,7 +204,7 @@ function AutoTransferUpgrades() {
             bestPrestPerMs = 0;
             maxPP = 0;
     }
-    if(player.transferPoints>=tupgCosts[transferPriority[transferIndex]]) {
+    if(player.transferPoints>=tupgCosts[transferPriority[transferIndex]-1]) {
         buyTransferUpgrade(transferPriority[transferIndex]);
         transferIndex++;
     }
