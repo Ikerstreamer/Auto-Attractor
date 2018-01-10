@@ -247,7 +247,7 @@ function Loop() {
     else if (autoprest > 1) AutoPrestige();
     if (dtrans) DynamicAutoTransfer();
     else if (autotrans >= 1) AutoTransfer();
-    if (autogen) AutoGenerator();
+    if (autogen && !prestCheck) AutoGenerator();
     prestTime += 50;
     x = new Decimal(prestPerMs * 1000)
     document.getElementById("PP/sec").innerHTML = format(x) + "PP/s";
