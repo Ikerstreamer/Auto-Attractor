@@ -1,9 +1,10 @@
-var AutoVersion = "Auto Attractor V0.9.13";
+var AutoVersion = "Auto Attractor V0.9.14";
 var autogen = true;
 var autosuper = true;
 var autoTransUp = true;
 var autoprest = 0;
 var prestTime = 0;
+var prestCheck = false;
 var autotrans = 0;
 var prestPerMs = 0;
 var bestPrestPerMs = 0;
@@ -44,6 +45,7 @@ setInterval(function() {
         bestPrestPerMs = 0;
         maxPP = 0;
         prestTime = 0;
+	  	    prestCheck = false;
     });
     document.getElementById("prestige2").addEventListener("click", function() {
         bestTPPerMs = 0;
@@ -51,6 +53,7 @@ setInterval(function() {
         bestPrestPerMs = 0;
         maxPP = 0;
         prestTime = 0;
+	    prestCheck = false;
     });
     document.getElementById("prestige3").addEventListener("click", function() {
         bestTPPerMs = 0;
@@ -58,6 +61,7 @@ setInterval(function() {
         bestPrestPerMs = 0;
         maxPP = 0;
         prestTime = 0;
+	    prestCheck = false;
     });
 }, 100)
 
@@ -76,6 +80,7 @@ function UpdateAA() {
         prestTime = 0;
         bestPrestPerMs = 0;
         maxPP = 0;
+	    prestCheck = false;
     }
     if (!isNaN(document.getElementById("prestautoamnt").value)) autoprest = parseFloat(document.getElementById("prestautoamnt").value);
     if (!isNaN(document.getElementById("transautoamnt").value)) autotrans = parseInt(document.getElementById("transautoamnt").value);
@@ -88,6 +93,7 @@ function AutoPrestige() {
         prestTime = 0;
         bestPrestPerMs = 0;
         maxPP = 0;
+	    prestCheck = false;
     } else {
         num = Math.pow(autotrans, 3)
         if(player.transferUpgrades.length>0)
@@ -98,6 +104,7 @@ function AutoPrestige() {
             prestTime = 0;
             bestPrestPerMs = 0;
             maxPP = 0;
+		prestCheck = false;
             return;
         } 
         } 
@@ -107,6 +114,7 @@ function AutoPrestige() {
             prestTime = 0;
             bestPrestPerMs = 0;
             maxPP = 0;
+		prestCheck = false;
             return;
         }
     }
@@ -117,10 +125,14 @@ function DynamicAutoPrestige() {
     prestPerMs = maxPP / prestTime;
     if (getPrestigePower().gt(player.prestigePower) && prestTime % 1000 == 0 && player.stars.gte(1e40)) {
         if (prestPerMs < bestPrestPerMs - (bestPrestPerMs * (prestBuffer / 100))) {
-            reset(1);
-            prestTime = 0;
-            bestPrestPerMs = 0;
-            maxPP = 0;
+		if(prestCheck)
+		{
+            	reset(1);
+            	prestTime = 0;
+            	bestPrestPerMs = 0;
+            	maxPP = 0;
+		prestCheck = false;
+		}else prestCheck = true;
         } else {
             if (prestPerMs > bestPrestPerMs) bestPrestPerMs = prestPerMs;
         }
@@ -133,6 +145,7 @@ function DynamicAutoPrestige() {
         prestTime = 0;
         bestPrestPerMs = 0;
         maxPP = 0;
+	prestCheck = false;
         return;
     } 
         }
@@ -141,6 +154,7 @@ function DynamicAutoPrestige() {
         prestTime = 0;
         bestPrestPerMs = 0;
         maxPP = 0;
+	prestCheck = false;
         return;
     }
 }
@@ -159,6 +173,7 @@ function AutoTransfer() {
         prestTime = 0;
         bestPrestPerMs = 0;
         maxPP = 0;
+	prestCheck = false;
     }
 }
 
@@ -166,12 +181,13 @@ function DynamicAutoTransfer() {
     if (getTransferPoints().gt(TPcount)) {
         TPPerMs = getTransferPoints().divide(player.transferPlaytime);
         if (TPPerMs < bestTPPerMs - (bestTPPerMs * (transBuffer / 100))) {
-            reset(2);
-            bestTPPerMs = 0;
-            TPcount = 0;
-            prestTime = 0;
-            bestPrestPerMs = 0;
-            maxPP = 0;
+           	 reset(2);
+            	bestTPPerMs = 0;
+            	TPcount = 0;
+          	  prestTime = 0;
+           	 bestPrestPerMs = 0;
+           	 maxPP = 0;
+		prestCheck = false;
         } else {
             TPcount = getTransferPoints();
             if (TPPerMs > bestTPPerMs) bestTPPerMs = TPPerMs;
@@ -189,11 +205,13 @@ function AutoTransferUpgrades() {
         prestTime = 0;
         bestPrestPerMs = 0;
         maxPP = 0;
+	    prestCheck = false;
     }else if (getPrestigePower().gt(num * 1000)) {
         reset(1);
         prestTime = 0;
         bestPrestPerMs = 0;
         maxPP = 0;
+	    prestCheck = false;
     }
     if(getTransferPoints().gte(tupgCosts[transferPriority[transferIndex]-1]-player.transferPoints))
     {
@@ -203,6 +221,7 @@ function AutoTransferUpgrades() {
             prestTime = 0;
             bestPrestPerMs = 0;
             maxPP = 0;
+	    prestCheck = false;
     }
     if(player.transferPoints>=tupgCosts[transferPriority[transferIndex]-1]) {
         buyTransferUpgrade(transferPriority[transferIndex]);
@@ -217,6 +236,7 @@ function AutoSupernova() {
         bestPrestPerMs = 0;
         maxPP = 0;
         prestTime = 0;
+	    prestCheck = false;
     }
 }
 
