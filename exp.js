@@ -179,7 +179,7 @@ function AutoTransfer() {
 
 function DynamicAutoTransfer() {
     if (getTransferPoints().gt(TPcount)) {
-        TPPerMs = getTransferPoints().divide(player.transferPlaytime);
+        TPPerMs = getTransferPoints().divide(player.transferPlaytime*1000);
         if (TPPerMs < bestTPPerMs - (bestTPPerMs * (transBuffer / 100))) {
            	 reset(2);
             	bestTPPerMs = 0;
