@@ -121,8 +121,6 @@ function AutoPrestige() {
 }
 
 function DynamicAutoPrestige() {
-    if (getPrestigePower().gt(maxPP)) maxPP = getPrestigePower();
-    prestPerMs = maxPP / prestTime;
     if (getPrestigePower().gt(player.prestigePower) && prestTime % 1000 == 0 && player.stars.gte(1e40)) {
         if (prestPerMs < bestPrestPerMs - (bestPrestPerMs * (prestBuffer / 100))) {
 		if(prestCheck && getPrestigePower() >= maxPP)
@@ -136,6 +134,8 @@ function DynamicAutoPrestige() {
         } else {
             if (prestPerMs > bestPrestPerMs) bestPrestPerMs = prestPerMs;
         }
+	     if (getPrestigePower().gt(maxPP)) maxPP = getPrestigePower();
+    		prestPerMs = maxPP / prestTime;
     }
     num = Math.pow(autotrans, 3)
     if(player.transferUpgrades.length>0)
