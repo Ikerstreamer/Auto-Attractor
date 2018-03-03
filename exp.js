@@ -125,7 +125,7 @@ function DynamicAutoPrestige() {
     prestPerMs = maxPP / prestTime;
     if (getPrestigePower().gt(player.prestigePower) && prestTime % 1000 == 0 && player.stars.gte(1e40)) {
         if (prestPerMs < bestPrestPerMs - (bestPrestPerMs * (prestBuffer / 100))) {
-		if(prestCheck)
+		if(prestCheck && getPrestigePower() >= maxPP)
 		{
             	reset(1);
             	prestTime = 0;
