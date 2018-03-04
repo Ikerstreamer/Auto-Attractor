@@ -2,18 +2,18 @@ var AutoVersion = "Auto Attractor V0.9.14";
 var autogen = true;
 var autosuper = true;
 var autoTransUp = true;
-var autoprest = 0;
+var autoprest = new Decimal(0);
 var prestTime = 0;
 var prestCheck = false;
-var autotrans = 0;
-var prestPerMs = 0;
+var autotrans = new Decimal(0);
+var prestPerMs = new Decimal(0);
 var bestPrestPerMs = 0;
-var TPPerMs = 0;
-var bestTPPerMs = 0;
+var TPPerMs = new Decimal(0);
+var bestTPPerMs = new Decimal(0);
 var dprest = false;
 var dtrans = false;
-var maxPP = 0;
-var TPcount = 0;
+var maxPP = new Decimal(0);
+var TPcount = new Decimal(0);
 var transBuffer = 2.5;
 var prestBuffer = 2.5;
 var transferPriority = [1,2,3,4,5,6,7,8,9,10,11,12,13,14];
@@ -42,24 +42,24 @@ setInterval(function() {
     else document.getElementById("transferupgrade").style.display = "none"; 
     
     document.getElementById("prestige1").addEventListener("click", function() {
-        bestPrestPerMs = 0;
-        maxPP = 0;
-        prestTime = 0;
+        bestPrestPerMs = new Decimal(0);
+        maxPP = new Decimal(0);
+        prestTime = new Decimal(0);
 	  	    prestCheck = false;
     });
     document.getElementById("prestige2").addEventListener("click", function() {
-        bestTPPerMs = 0;
-        TPcount = 0;
-        bestPrestPerMs = 0;
-        maxPP = 0;
-        prestTime = 0;
+        bestTPPerMs = new Decimal(0);
+        TPcount = new Decimal(0);
+        bestPrestPerMs = new Decimal(0);
+        maxPP = new Decimal(0);
+        prestTime = new Decimal(0);
 	    prestCheck = false;
     });
     document.getElementById("prestige3").addEventListener("click", function() {
-        bestTPPerMs = 0;
-        TPcount = 0;
-        bestPrestPerMs = 0;
-        maxPP = 0;
+        bestTPPerMs = new Decimal(0);
+        TPcount = new Decimal(0);
+        bestPrestPerMs = new Decimal(0);
+        maxPP = new Decimal(0);
         prestTime = 0;
 	    prestCheck = false;
     });
@@ -78,76 +78,73 @@ function UpdateAA() {
     if (dprest && getPrestigePower().gt(player.prestigePower) && player.stars.gte(1e40)) {
         reset(1);
         prestTime = 0;
-        bestPrestPerMs = 0;
-        maxPP = 0;
+        bestPrestPerMs = new Decimal(0);
+        maxPP = new Decimal(0);
 	    prestCheck = false;
     }
-    if (!isNaN(document.getElementById("prestautoamnt").value)) autoprest = parseFloat(document.getElementById("prestautoamnt").value);
-    if (!isNaN(document.getElementById("transautoamnt").value)) autotrans = parseInt(document.getElementById("transautoamnt").value);
+    if (!isNaN(document.getElementById("prestautoamnt").value)) autoprest = new Decimal(document.getElementById("prestautoamnt").value);
+    if (!isNaN(document.getElementById("transautoamnt").value)) autotrans = new Decimal(document.getElementById("transautoamnt").value);
 }
 
 function AutoPrestige() {
     if (getPrestigePower().gte(player.prestigePower.times(autoprest)) && player.stars.gte(1e40)) {
         reset(1);
         prestTime = 0;
-        prestTime = 0;
-        bestPrestPerMs = 0;
-        maxPP = 0;
+        bestPrestPerMs = new Decimal(0);
+        maxPP = new Decimal(0);
 	    prestCheck = false;
     } else {
-        num = Math.pow(autotrans, 3)
+        num = new Decimal(autotrans.pow(3));
         if(player.transferUpgrades.length>0)
         {
         if (player.transferUpgrades.includes(13) && getPrestigePower().gt(num * 500)) {
             reset(1);
             prestTime = 0;
-            prestTime = 0;
-            bestPrestPerMs = 0;
-            maxPP = 0;
-		prestCheck = false;
+            bestPrestPerMs = new Decimal(0);
+            maxPP = new Decimal(0);
+		    prestCheck = false;
             return;
         } 
         } 
         if (getPrestigePower().gt(num * 1000)) {
             reset(1);
             prestTime = 0;
-            prestTime = 0;
-            bestPrestPerMs = 0;
-            maxPP = 0;
-		prestCheck = false;
+            bestPrestPerMs = new Decimal(0);
+            maxPP = new Decimal(0);
+		    prestCheck = false;
             return;
         }
     }
 }
 
 function DynamicAutoPrestige() {
-    if (getPrestigePower().gt(player.prestigePower) && prestTime % 1000 == 0 && player.stars.gte(1e40)) {
-        if (prestPerMs < bestPrestPerMs - (bestPrestPerMs * (prestBuffer / 100))) {
+    if (getPrestigePower().gt(player.prestigePower) && getPrestigePower().gt(1)) {
+        if ((bestPrestPerMs.times(1-(prestBuffer/100))).gt(prestPerMs)) {
 		if(prestCheck)
 		{
-		   if(getPrestigePower() >= maxPP)
+		   if(getPrestigePower().gte(maxPP))
 		{
             	reset(1);
             	prestTime = 0;
-            	bestPrestPerMs = 0;
-            	maxPP = 0;
-		prestCheck = false;
+            	bestPrestPerMs = new Decimal(0);
+            	maxPP = new Decimal(0);
+		        prestCheck = false;
 		}
 		}else prestCheck = true;
         } else {
             if (prestPerMs > bestPrestPerMs) bestPrestPerMs = prestPerMs;
         }
 	     if (getPrestigePower().gt(maxPP)) maxPP = getPrestigePower();
-    		prestPerMs = maxPP / prestTime;
+    		prestPerMs = new Decimal(maxPP.div(prestTime));
     }
-    num = Math.pow(autotrans, 3)
+    num = new Decimal(autotrans.pow(3));
     if(player.transferUpgrades.length>0)
         {
     if (player.transferUpgrades.includes(13) && getPrestigePower().gt(num * 500)) {
         reset(1);
         prestTime = 0;
-        bestPrestPerMs = 0;
-        maxPP = 0;
+        bestPrestPerMs = new Decimal(0);
+        maxPP = new Decimal(0);
 	prestCheck = false;
         return;
     } 
@@ -155,8 +152,8 @@ function DynamicAutoPrestige() {
             if (getPrestigePower().gt(num * 1000)) {
         reset(1);
         prestTime = 0;
-        bestPrestPerMs = 0;
-        maxPP = 0;
+        bestPrestPerMs = new Decimal(0);
+        maxPP = new Decimal(0);
 	prestCheck = false;
         return;
     }
@@ -171,11 +168,11 @@ function AutoGenerator() {
 function AutoTransfer() {
     if (getTransferPoints().gte(autotrans)) {
         reset(2);
-        bestTPPerMs = 0;
-        TPcount = 0;
+        bestTPPerMs = new Decimal(0);
+        TPcount = new Decimal(0);
         prestTime = 0;
-        bestPrestPerMs = 0;
-        maxPP = 0;
+        bestPrestPerMs = new Decimal(0);
+        maxPP = new Decimal(0);
 	prestCheck = false;
     }
 }
@@ -183,17 +180,16 @@ function AutoTransfer() {
 function DynamicAutoTransfer() {
     if (getTransferPoints().gt(TPcount)) {
         TPPerMs = getTransferPoints().divide(player.transferPlaytime*1000);
-        if (TPPerMs < bestTPPerMs - (bestTPPerMs * (transBuffer / 100))) {
+        if (TPPerMs.lt(bestTPPerMs.times(1 - (transBuffer / 100)))) {
            	 reset(2);
-            	bestTPPerMs = 0;
+            	bestTPPerMs = new Decimal(0);
             	TPcount = 0;
-          	  prestTime = 0;
-           	 bestPrestPerMs = 0;
-           	 maxPP = 0;
+            	bestPrestPerMs = new Decimal(0);
+            	maxPP = new Decimal(0);
 		prestCheck = false;
         } else {
             TPcount = getTransferPoints();
-            if (TPPerMs > bestTPPerMs) bestTPPerMs = TPPerMs;
+            if (TPPerMs.gt(bestTPPerMs)) bestTPPerMs = TPPerMs;
         }
     }
     
@@ -206,27 +202,27 @@ function AutoTransferUpgrades() {
     {
         reset(1);
         prestTime = 0;
-        bestPrestPerMs = 0;
-        maxPP = 0;
+        bestPrestPerMs = new Decimal(0);
+        maxPP = new Decimal(0);
 	    prestCheck = false;
     }else if (getPrestigePower().gt(num * 1000)) {
         reset(1);
         prestTime = 0;
-        bestPrestPerMs = 0;
-        maxPP = 0;
+        bestPrestPerMs = new Decimal(0);
+        maxPP = new Decimal(0);
 	    prestCheck = false;
     }
     if(getTransferPoints().gte(costs.tupgs[transferPriority[transferIndex]-1]-player.transferPoints))
     {
             reset(2);
-            bestTPPerMs = 0;
-            TPcount = 0;
+            bestTPPerMs = new Decimal(0);
+            TPcount = new Decimal(0);
             prestTime = 0;
-            bestPrestPerMs = 0;
-            maxPP = 0;
+            bestPrestPerMs = new Decimal(0);
+            maxPP = new Decimal(0);
 	    prestCheck = false;
     }
-    if(player.transferPoints>=costs.tupgs[transferPriority[transferIndex]-1]) {
+    if(player.transferPoints.gte(costs.tupgs[transferPriority[transferIndex]-1])) {
         buyTransferUpgrade(transferPriority[transferIndex]);
         transferIndex++;
     }
@@ -234,11 +230,10 @@ function AutoTransferUpgrades() {
 function AutoSupernova() {
     if (player.stars.gte(Number.MAX_VALUE)) {
         reset(3);
-        bestTPPerMs = 0;
-        TPcount = 0;
-        bestPrestPerMs = 0;
-        maxPP = 0;
-        prestTime = 0;
+        bestTPPerMs = new Decimal(0);
+        TPcount = new Decimal(0);
+        bestPrestPerMs = new Decimal(0);
+        maxPP = new Decimal(0);
 	    prestCheck = false;
     }
 }
@@ -247,13 +242,13 @@ function Loop() {
     if(autosuper) AutoSupernova();
     if(autoTransUp && transferIndex<14) AutoTransferUpgrades();
     if (dprest) DynamicAutoPrestige();
-    else if (autoprest > 1) AutoPrestige();
+    else if (autoprest.gt(1)) AutoPrestige();
     if (dtrans) DynamicAutoTransfer();
-    else if (autotrans >= 1) AutoTransfer();
+    else if (autotrans.gte(1)) AutoTransfer();
     if (autogen && !prestCheck) AutoGenerator();
     prestTime += 50;
-    x = new Decimal(prestPerMs * 1000)
+    x = new Decimal(prestPerMs.times(1000))
     document.getElementById("PP/sec").innerHTML = format(x) + "PP/s";
-    x = new Decimal(TPPerMs * 60000)
+    x = new Decimal(TPPerMs.times(60000))
     document.getElementById("TP/sec").innerHTML = format(x, 3) + "TP/m";
 }
