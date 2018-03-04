@@ -123,13 +123,16 @@ function AutoPrestige() {
 function DynamicAutoPrestige() {
     if (getPrestigePower().gt(player.prestigePower) && prestTime % 1000 == 0 && player.stars.gte(1e40)) {
         if (prestPerMs < bestPrestPerMs - (bestPrestPerMs * (prestBuffer / 100))) {
-		if(prestCheck && getPrestigePower() >= maxPP)
+		if(prestCheck)
+		{
+		   if(getPrestigePower() >= maxPP)
 		{
             	reset(1);
             	prestTime = 0;
             	bestPrestPerMs = 0;
             	maxPP = 0;
 		prestCheck = false;
+		}
 		}else prestCheck = true;
         } else {
             if (prestPerMs > bestPrestPerMs) bestPrestPerMs = prestPerMs;
