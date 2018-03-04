@@ -72,8 +72,8 @@ function UpdateAA() {
     autoTransUp = document.getElementById("transferupgradeautoselect").checked;
     dprest = document.getElementById("dynamicprestselect").checked;
     dtrans = document.getElementById("dynamictransselect").checked;
-    prestBuffer = document.getElementById("prestbufferamnt").value;
-    transBuffer = document.getElementById("transbufferamnt").value;
+    prestBuffer = parseFloat(document.getElementById("prestbufferamnt").value);
+    transBuffer = parseFloat(document.getElementById("transbufferamnt").value);
     for(var i=0;i<14;i++)for(var j=1;j<15;j++)if(document.getElementById("t"+j).value == i+1)transferPriority[i] = j;
     if (dprest && getPrestigePower().gt(player.prestigePower) && player.stars.gte(1e40)) {
         reset(1);
